@@ -46,8 +46,10 @@ public class LoanController {
             consumes = "application/json",
             produces = "application/json")
     public ResponseEntity<RestResponse> extendLoan(@PathVariable("id") Long loanId) {
-        loanService.extendLoan(loanId);
-        return ResponseEntity.ok(null);
+        RestResponse response = loanService.extendLoan(loanId);
+        return ResponseEntity.ok(response);
+
+        // TODO add validator(s) or set in config how many times it can be done
     }
 
     @ExceptionHandler(EntityNotFoundException.class)
